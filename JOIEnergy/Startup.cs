@@ -53,6 +53,8 @@ namespace JOIEnergy
             services.AddSingleton((IServiceProvider arg) => readings);
             services.AddSingleton((IServiceProvider arg) => pricePlans);
             services.AddSingleton((IServiceProvider arg) => SmartMeterToPricePlanAccounts);
+
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +66,8 @@ namespace JOIEnergy
             }
 
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
 
         private Dictionary<string, List<ElectricityReading>> GenerateMeterElectricityReadings() {
