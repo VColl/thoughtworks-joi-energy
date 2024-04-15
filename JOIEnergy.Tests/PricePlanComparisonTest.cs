@@ -42,9 +42,9 @@ namespace JOIEnergy.Tests
 
             Assert.NotNull(result);
             Assert.Equal(3, result.Count);
-            Assert.Equal(100m, result[Supplier.DrEvilsDarkEnergy.ToString()], 3);
-            Assert.Equal(20m, result[Supplier.TheGreenEco.ToString()], 3);
-            Assert.Equal(10m, result[Supplier.PowerForEveryone.ToString()], 3);
+            Assert.Equal(50m, result[Supplier.DrEvilsDarkEnergy.ToString()], 3);
+            Assert.Equal(10m, result[Supplier.TheGreenEco.ToString()], 3);
+            Assert.Equal(5m, result[Supplier.PowerForEveryone.ToString()], 3);
         }
 
         [Fact]
@@ -58,12 +58,12 @@ namespace JOIEnergy.Tests
             object result = controller.RecommendCheapestPricePlans(SMART_METER_ID, null).Value;
             var recommendations = ((IEnumerable<KeyValuePair<string, decimal>>)result).ToList();
 
-            Assert.Equal("" + Supplier.PowerForEveryone, recommendations[0].Key);
-            Assert.Equal("" + Supplier.TheGreenEco, recommendations[1].Key);
-            Assert.Equal("" + Supplier.DrEvilsDarkEnergy, recommendations[2].Key);
-            Assert.Equal(38m, recommendations[0].Value, 3);
-            Assert.Equal(76m, recommendations[1].Value, 3);
-            Assert.Equal(380m, recommendations[2].Value, 3);
+            Assert.Equal(Supplier.PowerForEveryone.ToString(), recommendations[0].Key);
+            Assert.Equal(Supplier.TheGreenEco.ToString(), recommendations[1].Key);
+            Assert.Equal(Supplier.DrEvilsDarkEnergy.ToString(), recommendations[2].Key);
+            Assert.Equal(6m, recommendations[0].Value, 3);
+            Assert.Equal(12m, recommendations[1].Value, 3);
+            Assert.Equal(60m, recommendations[2].Value, 3);
             Assert.Equal(3, recommendations.Count);
         }
 
@@ -80,8 +80,8 @@ namespace JOIEnergy.Tests
 
             Assert.Equal("" + Supplier.PowerForEveryone, recommendations[0].Key);
             Assert.Equal("" + Supplier.TheGreenEco, recommendations[1].Key);
-            Assert.Equal(16.667m, recommendations[0].Value, 3);
-            Assert.Equal(33.333m, recommendations[1].Value, 3);
+            Assert.Equal(26.667m, recommendations[0].Value, 3);
+            Assert.Equal(53.333m, recommendations[1].Value, 3);
             Assert.Equal(2, recommendations.Count);
         }
 
